@@ -10,7 +10,8 @@
 // usa getElementById com o ID errado ('form-contato' ao invés de 'formContato')
 document.addEventListener('DOMContentLoaded', function () {
 
-  const form = document.getElementById('form-contato'); // BUG: ID errado! No HTML é 'formContato'
+   // Corrigido: ID agora bate com o HTML
+  const form = document.getElementById('formContato');
 
   if (form) {
     form.addEventListener('submit', function (e) {
@@ -20,18 +21,34 @@ document.addEventListener('DOMContentLoaded', function () {
       const email = document.getElementById('e-mail').value.trim();
       const mensagem = document.getElementById('mensagem').value.trim();
 
-      // BUG #21: validação de email incompleta - não valida o formato correto
+      // Validação de campos vazios
       if (!nome || !email || !mensagem) {
         alert('Por favor, preencha todos os campos!');
         return;
       }
 
-      // BUG #22: mensagem de sucesso diz "entraremos em contato em até 24 horas"
-      // mas o email de contato no HTML está errado (.com.rb), então nunca funcionaria
-      alert('Mensagem enviada com sucesso! Entraremos em contato em até 24 horas.');
+      // ✅ Validação básica de e-mail
+      const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailValido.test(email)) {
+        alert('Por favor, insira um e-mail válido!');
+        return;
+      }
+
+      // ✅ Mensagem mais honesta (ou ajuste seu HTML também)
+      alert('Mensagem enviada com sucesso!');
+
       form.reset();
     });
   }
+
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  
 
   // =====================
   // HIGHLIGHT DO MENU ATIVO
@@ -68,4 +85,27 @@ document.addEventListener('DOMContentLoaded', function () {
   // O código abaixo foi escrito mas nunca vinculado a nenhum elemento do HTML.
   const anoAtual = new Date().getFullYear();
   // console.log('Ano atual:', anoAtual); // linha comentada e nunca usada
+});
+
+const form = document.getElementById("formAgendamento");
+const msg = document.getElementById("msgAgendamento");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const servico = document.getElementById("servico").value;
+  const data = document.getElementById("data").value;
+  const horario = document.getElementById("horario").value;
+  const nome = document.getElementById("nomeAgendamento").value;
+
+  if (!servico || !data || !horario || !nome) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  // Simulação de agendamento
+  msg.textContent = `Agendamento confirmado para ${nome} em ${data} às ${horario} (${servico})`;
+  msg.classList.remove("hidden");
+
+  form.reset();
 });
