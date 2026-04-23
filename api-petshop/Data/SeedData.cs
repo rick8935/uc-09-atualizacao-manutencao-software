@@ -1,5 +1,7 @@
 using ApiPetshop.Models;
+using Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using Domain;
 
 namespace ApiPetshop.Data;
 
@@ -13,28 +15,28 @@ public static class SeedData
     /// O método Seed verifica e insere os dados iniciais.
     /// Recebe o "AppDbContext" para interagir com o banco de dados.
     /// </summary>
-    public static void Seed(AppDbContext context)
+    public static void Seed(MeuDbContext context)
     {
         // Verifica se a tabela FotosAntesDepois não possui NENHUM registro
         if (!context.FotosAntesDepois.Any())
         {
             // Adiciona uma lista de novos objetos FotoAntesDepois
             context.FotosAntesDepois.AddRange(
-                new FotoAntesDepois
+                new FotosAntesDepois
                 {
                     NomeCachorro = "Bob", // Nome fictício para demonstração
                     CaminhoFoto = "uploads/bob-antes-depois.jpg", // Caminho de teste
                     LinkRedeSocial = null,
                     DataCriacao = DateTime.UtcNow // Data e hora atual (padrão UTC)
                 },
-                new FotoAntesDepois
+                new FotosAntesDepois
                 {
                     NomeCachorro = "Luna",
                     CaminhoFoto = "uploads/luna-antes-depois.jpg",
                     LinkRedeSocial = null,
                     DataCriacao = DateTime.UtcNow
                 },
-                new FotoAntesDepois
+                new FotosAntesDepois
                 {
                     NomeCachorro = "Toby",
                     CaminhoFoto = "uploads/toby-antes-depois.jpg",

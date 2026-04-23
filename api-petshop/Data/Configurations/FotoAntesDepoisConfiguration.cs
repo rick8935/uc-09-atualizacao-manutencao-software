@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ApiPetshop.Data.Configurations;
 
-public class FotoAntesDepoisConfiguration : IEntityTypeConfiguration<FotoAntesDepois>
+public class FotoAntesDepoisConfiguration : IEntityTypeConfiguration<FotosAntesDepois>
 {
-    public void Configure(EntityTypeBuilder<FotoAntesDepois> builder)
+    public void Configure(EntityTypeBuilder<FotosAntesDepois> builder)
     {
         builder.HasKey(f => f.Id);
         builder.Property(f => f.NomeCachorro)

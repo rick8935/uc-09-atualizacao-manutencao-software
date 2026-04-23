@@ -1,4 +1,6 @@
 # Build
+.vs/
+**/.vs/
 bin/
 obj/
 
@@ -22,6 +24,13 @@ Thumbs.db
 # Logs
 *.log
 
+# Cache / DB / VS indexing
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+**/CopilotIndices/
+
 # Others
 *.dbmdl
 *.pdb
@@ -35,6 +44,10 @@ TestResults/
 
 # EF Core
 Migrations/
+**/Migrations/*
+!**/Migrations/*.cs
+!**/Migrations/*.Designer.cs
+!**/Migrations/*ModelSnapshot.cs
 
 # Publish
 publish/

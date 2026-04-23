@@ -66,7 +66,7 @@ public class FotosAntesDepoisController : ControllerBase
         }
 
         // 5. Prepara o objeto: Cria a entidade principal que será salva no bando de dados da aplicação
-        var foto = new FotoAntesDepois
+        var foto = new FotosAntesDepois
         {
             NomeCachorro = request.NomeCachorro,
             // Guardamos apenas o caminho relativo que será exposto na Web para as páginas acessarem a imagem
