@@ -50,6 +50,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
   
 
+// --- INTEGRAÇÃO DO FORMULÁRIO DE AGENDAMENTO ---
+// URL base correta (sem o caminho da documentação Scalar)
+const API_URL = "https://localhost:7217/api/Contato";
+
+const formContato = document.getElementById("formContato");
+
+if (formContato) {
+    formContato.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Montando o objeto exatamente como o seu --data do curl pede
+        const payload = {
+            nome: document.getElementById("nome").value,
+            email: document.getElementById("email").value, // id corrigido para bater com HTML
+            mensagem: document.getElementById("mensagem").value
+        };
+
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json" 
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert("Contato enviado com sucesso!");
+                formContato.reset();
+            } else {
+                alert("Erro na API: " + response.status);
+            }
+        } catch (error) {
+            console.error("Erro ao conectar:", error);
+            alert("Verifique se a API está rodando no Visual Studio!");
+        }
+    });
+}
+
+
   // =====================
   // HIGHLIGHT DO MENU ATIVO
   // =====================
