@@ -1,6 +1,11 @@
 using ApiPetshop.Data;
+using Infra;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using Infra.Data;
+using Domain.Interfaces;
+using Infra.Repositories;
 
 // Inicializa o criador (builder) da aplicação Web
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +27,7 @@ builder.Services.AddCors(options =>
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Configurando o Banco de Dados (Entity Framework Core com MySQL)
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<MeuDbContext>(options =>
     options.UseMySql(
         connectionString,
         // Define a versão do servidor MySQL utilizado
@@ -44,6 +49,9 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new() { Title = "ApiPetshop", Version = "v1" });
 });
 
+// Registro do Repositório (Injeção de Dependência)
+builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
+
 // A partir daqui, as configurações de serviços (injeção de dependência) terminaram
 // E inicia-se o "pipeline de requisições HTTP" (Middlewares)
 var app = builder.Build();
@@ -51,12 +59,14 @@ var app = builder.Build();
 // Verifica se o ambiente de execução é "Desenvolvimento"
 if (app.Environment.IsDevelopment())
 {
-    // Habilita o middleware do Swagger para disponibilizar a documentação JSON
     app.UseSwagger();
-    // Gera uma interface de usuário alternativa e moderna inspirada no Scalar
+
     app.MapScalarApiReference(options =>
     {
         options.WithOpenApiRoutePattern("/swagger/{documentName}/swagger.json");
+
+        // Esta linha força o tema claro (tela branca)
+        options.WithTheme(ScalarTheme.None);
     });
 }
 
@@ -76,15 +86,20 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Bloco para inicializar ou atualizar o banco de dados e inserir dados iniciais na primeira execução
+// ... (resto do código acima igual)
+
+// Bloco para inicializar ou atualizar o banco de dados
 using (var scope = app.Services.CreateScope())
 {
-    // Acessa o contexto do banco de dados na memória do App
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // Executa as migrações pendentes para criar as tabelas no MySQL se não existirem
+    // 1. Mude para MeuDbContext aqui
+    var db = scope.ServiceProvider.GetRequiredService<MeuDbContext>();
+
+    // Executa as migrações (Cria as tabelas no MySQL)
     db.Database.Migrate();
-    // Chama o método para popular inicialmente algumas fotos no banco (Seeding)
+
+    // 2. Agora o 'db' (MeuDbContext) vai ser aceito pelo SeedData 
+    // se você já tiver mudado a assinatura lá no arquivo SeedData.cs
     SeedData.Seed(db);
 }
 
-// Por fim, executa a aplicação para começar a receber requisições do mundo exterior!
 app.Run();

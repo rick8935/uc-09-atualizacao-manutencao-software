@@ -1,0 +1,13 @@
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\bin\Debug\net8.0\Domain.deps.json
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\bin\Debug\net8.0\Domain.dll
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\bin\Debug\net8.0\Domain.pdb
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.dll
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\refint\Domain.dll
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.pdb
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\ref\Domain.dll
+C:\Users\Aluno\Documents\rick\petshop\uc-09-atualizacao-manutencao-software\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache

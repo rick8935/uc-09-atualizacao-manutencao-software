@@ -6,7 +6,7 @@ namespace ApiPetshop.Models;
 /// Uma classe Model (Modelo) representa essencialmente a estrutura de uma tabela no Banco de Dados.
 /// Além disso, é a classe de dados principal que vai percorrer o sistema.
 /// </summary>
-public class FotoAntesDepois
+public class FotosAntesDepois
 {
     // A propriedade "Id" quase sempre vira a Chave Primária (Primary Key - PK) da tabela
     // Sendo auto-incremento no MySQL, ou seja, gerada automaticamente (1, 2, 3...)
