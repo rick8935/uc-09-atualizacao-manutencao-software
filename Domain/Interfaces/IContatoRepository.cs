@@ -10,8 +10,8 @@ namespace Domain.Interfaces
     public interface IContatoRepository
     {
         Task<IEnumerable<Contato>> ObterTodosAsync();
-        Task<Contato> ObterPorIdAsync(Guid id);
+        Task<Contato> ObterPorEmailAsync(string email);
         Task<Contato> AdicionarAsync(Contato contato);
-        Task<Contato> ExcluirAsync(Contato contato);
+        Task<bool> ExcluirAsync(Guid id);
     }
 }

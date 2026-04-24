@@ -21,17 +21,24 @@ namespace Infra.Repositories
             return contato;
         }
 
-        public async Task<Contato> ExcluirAsync(Contato contato)
+        public async Task<bool> ExcluirAsync(Guid id)
         {
+            // Busca o contato no banco primeiro
+            var contato = await _meuDbContext.Contatos.FindAsync(id);
+
+            // Se não existir, avisa o controller (retornando false)
+            if (contato == null) return false;
+
+            // Remove o objeto encontrado
             _meuDbContext.Contatos.Remove(contato);
             await _meuDbContext.SaveChangesAsync();
 
-            return contato;
+            return true;
         }
 
-        public async Task<Contato> ObterPorIdAsync(Guid id)
+        public async Task<Contato?> ObterPorEmailAsync(string email)
         {
-            return await _meuDbContext.Contatos.FirstOrDefaultAsync(u => u.Id == id);
+            return await _meuDbContext.Contatos.FirstOrDefaultAsync(c => c.Email == email);
         }
 
         public Task<IEnumerable<Contato>> ObterTodosAsync()
